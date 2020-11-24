@@ -12,7 +12,8 @@ module.exports = function (grunt) {
                 {
                     level: null,
                     bin: "phpstan",
-                    config: null
+                    config: null,
+                    memory_limit: null
                 }
             );
             let args = ["analyze"];
@@ -27,6 +28,9 @@ module.exports = function (grunt) {
             }
             if (options.config) {
                 args.push("-c", options.config);
+            }
+            if (options.memory_limit) {
+                args.push("--memory-limit", options.memory_limit);
             }
             args = args.concat(this.filesSrc);
             child_process.execFile(
